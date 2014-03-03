@@ -2,7 +2,7 @@
 
 Helper functions for Python virtual environments, as a lighter-weight alternative to virtualenvwrapper.
 
-+ Activate, deactivate change to another Python virtual environment
++ Activate, deactivate or change to another Python virtual environment
 + List available environments by name and Python version
 + Install `pip` for newly created environments
 
@@ -12,7 +12,7 @@ Suitable for both Python 2 and Python 3 running on UNIX-like OSes such as Linux,
 
 You must follow the practice of locating virtual environments under a common base directory. 
 
-Drop this file in a location like `$HOME/etc`, and:
+Place file **pyenv.helpers** in a location like `$HOME/etc/`, and:
 
 1. edit constant `VIRTUALENV_BASEDIR` to point to your common base directory (default: $HOME/pyenv)
 2. edit your `.profile` or `.bash_profile`, to source in this file:
