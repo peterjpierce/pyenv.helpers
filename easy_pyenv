@@ -1,0 +1,62 @@
+##
+# Helper functions for Python virtual environments
+#
+#   By:
+#     peterjpierce@gmail.com
+#     https://github.com/peterjpierce
+#
+#   Activate, deactivate, list or change to Python virtual environments
+#
+#   Usage:
+#     v.on  : activate or change to another virtual environment
+#     v.off : deactivate the current virtual environment
+#     v.ls  : list virtual environments, showing name and Python version
+#     v.pip : install or upgrade pip in an activated virtual environment
+#
+#   Setup:
+#     - source this file into your .profile, .bash_profile or runtime environment
+#     - requires a UNIX-like OS such as Linux, FreeBSD or Mac
+#     - requires your virtual environments to be under VIRTUALENV_BASEDIR (default: $HOME/pyenv)
+#
+#   Notes:
+#     - works equally well with Python 2 or Python 3
+#     - create your virtual environments separately using regular tools
+#       (this allows you to set them up using arbitrary Python versions and directives)
+
+# configure here (only) if at all
+VIRTUALENV_BASEDIR=$HOME/pyenv
+
+
+# activate or change to (pass environment name as $1)
+function v.on {
+  if [[ -n $1 ]] && [[ -e $VIRTUALENV_BASEDIR/$1 ]]; then
+    deactivate 2>/dev/null
+    source $VIRTUALENV_BASEDIR/$1/bin/activate
+  else
+    echo "provide existing env as \$1 (hint: try 'v.ls')"
+  fi
+}
+
+
+# deactivate, ignoring vacuous attempts
+alias v.off='deactivate 2>/dev/null'
+
+
+# list existing with Python version
+function v.ls {
+  for env in $(ls $VIRTUALENV_BASEDIR 2>/dev/null); do
+    ver=$($VIRTUALENV_BASEDIR/$env/bin/python --version 2>&1 | cut -f2 -d' ')
+    echo -e "$env\t($ver)"
+  done
+}
+
+
+# upgrade or install pip in an activated environment
+GETPIP=https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+function v.pip {
+  if [[ -n $_OLD_VIRTUAL_PATH ]] && [[ -n $VIRTUAL_ENV ]]; then
+    wget -O - --no-check-certificate $GETPIP | python
+  else
+    echo "use 'v.on' first to activate the target environment"
+  fi
+}
