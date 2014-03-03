@@ -6,9 +6,10 @@ Helper functions for Python virtual environments, as a lighter-weight alternativ
 
 ## Setup
 
-A UNIX-like OS such as Linux, FreeBSD or Mac is required, and your virtual environments must follow tthe practice of being consolidated under a common base directory. 
+A UNIX-like OS such as Linux, FreeBSD or Mac is required, and your virtual environments must follow the practice of being consolidated under a common base directory. 
 
 Drop this file in a location like `$HOME/etc`, and:
+
 1.  edit constant `VIRTUALENV_BASEDIR` to point to your common base directory (default: $HOME/pyenv)
 2.  edit your `.profile` or `.bash_profile`, to source in this file:
 
@@ -20,10 +21,11 @@ source $HOME/etc/pyenv.helpers
 
 ## Usage
 Run these from the command line:
-  +`v.on ` - activate or change to another virtual environment
-  +`v.off` - deactivate the current virtual environment
-  +`v.ls ` - list virtual environments, showing name and Python version
-  +`v.pip` - install or upgrade pip in an activated virtual environment
+
++`v.on ` - activate or change to another virtual environment
++`v.off` - deactivate the current virtual environment
++`v.ls ` - list virtual environments, showing name and Python version
++`v.pip` - install or upgrade pip in an activated virtual environment
 
 ## Feedback and Suggestions
 
