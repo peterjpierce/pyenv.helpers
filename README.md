@@ -12,16 +12,16 @@ Suitable for both Python 2 and Python 3 running on UNIX-like OSes such as Linux,
 
 You must follow the practice of locating virtual environments under a common base directory. 
 
-Place file **pyenv.helpers** in a location like `$HOME/etc/`, and:
+Place file **pyenv.helpers** in a location like $HOME/etc/, and:
 
-1. edit constant `VIRTUALENV_BASEDIR` to point to your common base directory (default: $HOME/pyenv)
-2. edit your `.profile` or `.bash_profile`, to source in this file:
+1. edit constant VIRTUALENV\_BASEDIR to point to your common base directory (default: $HOME/pyenv)
+2. edit your .profile or .bash\_profile, to source in this file:
 
 ```Bash
 source $HOME/etc/pyenv.helpers
 ```
 
-(You can also source this file into your runtime environment to try it out)
+(You can also just source **pyenv.helpers** into your runtime environment to try it out)
 
 ### Usage
 Run these from the command line:
