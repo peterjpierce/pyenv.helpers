@@ -55,7 +55,12 @@ function v.ls {
 GETPIP=https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 function v.pip {
   if [[ -n $_OLD_VIRTUAL_PATH ]] && [[ -n $VIRTUAL_ENV ]]; then
-    wget -O - --no-check-certificate $GETPIP | python
+    if [[ ! -e $VIRTUAL_ENV/bin/pip ]]; then
+      echo "installing pip"
+      wget -O - --no-check-certificate $GETPIP | python
+    fi
+    echo "upgrading pip"
+    pip install --upgrade pip
   else
     echo "use 'v.on' first to activate the target environment"
   fi

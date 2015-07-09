@@ -4,7 +4,7 @@ Helper functions for Python virtual environments, as a lighter-weight alternativ
 
 + Activate, deactivate or change to another Python virtual environment
 + List available environments by name and Python version
-+ Install `pip` for newly created environments
++ Install `pip` for newly created environments, and upgrade at any time
 
 Suitable for both Python 2 and Python 3 running on UNIX-like OSes such as Linux, FreeBSD or Mac. 
 
