@@ -26,12 +26,22 @@
 # configure here (only) if at all
 VIRTUALENV_BASEDIR=$HOME/pyenv
 
-
 # activate or change to (pass environment name as $1)
 function v.on {
-  if [[ -n $1 ]] && [[ -e $VIRTUALENV_BASEDIR/$1 ]]; then
+
+  if [[ -n $1 ]]; then
+    for trydir in $1/pyenv $1/env $1 $VIRTUALENV_BASEDIR/$1; do
+      maybe=$trydir/bin/activate
+      [[ -e $maybe ]] && target=$maybe && break
+    done
+  else
+    target=$(ls */bin/activate 2>/dev/null)
+  fi
+
+  if [[ -n $target ]]; then
     deactivate 2>/dev/null
-    source $VIRTUALENV_BASEDIR/$1/bin/activate
+    source $target
+    echo "using $(which python)"
   else
     echo "provide existing env as \$1 (hint: try 'v.ls')"
   fi
