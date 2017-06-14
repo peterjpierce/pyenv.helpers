@@ -25,6 +25,7 @@
 
 # configure here (only) if at all
 VIRTUALENV_BASEDIR=$HOME/pyenv
+VERSIONED_PYTHON="/opt/python/%s/bin/python"
 
 # activate or change to (pass environment name as $1)
 function v.on {
@@ -50,6 +51,20 @@ function v.on {
 
 # deactivate, ignoring vacuous attempts
 alias v.off='deactivate 2>/dev/null'
+
+
+function v.make {
+  # $1 is version, $2 is optional directory name to construct
+
+  python_binary=$(printf $VERSIONED_PYTHON "$1")
+  [[ ! -e $python_binary ]] && echo "specify a valid python version" && return 0
+
+  [[ -n $2 ]] && env_dir="$2" || env_dir='env'
+  [[ -e ./$env_dir ]] && echo "cannot proceed, $(cd $env_dir && pwd) already exists" && return 0
+
+  $python_binary -m venv $env_dir
+  echo "created virtual environment $(cd $env_dir && pwd)"
+}
 
 
 # list existing with Python version
