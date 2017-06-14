@@ -8,20 +8,20 @@
 #   Activate, deactivate, list or change to Python virtual environments
 #
 #   Usage:
-#     v.on  : activate or change to another virtual environment
-#     v.off : deactivate the current virtual environment
-#     v.ls  : list virtual environments, showing name and Python version
-#     v.pip : install or upgrade pip in an activated virtual environment
+#     v.on   : activate or change to another (possibly named) virtual environment
+#     v.off  : deactivate the current virtual environment
+#     v.make : create a new virtual environment (for a given python version)
+#     v.ls   : list virtual environments, showing name and Python version
+#     v.pip  : install or upgrade pip in an activated virtual environment
 #
 #   Setup:
 #     - source this file into your .profile, .bash_profile or runtime environment
 #     - requires a UNIX-like OS such as Linux, FreeBSD or Mac
-#     - requires your virtual environments to be under VIRTUALENV_BASEDIR (default: $HOME/pyenv)
+#     - your virtual environments are normally local to your project, but will be
+#          found if named and under VIRTUALENV_BASEDIR
 #
 #   Notes:
 #     - works equally well with Python 2 or Python 3
-#     - create your virtual environments separately using regular tools
-#       (this allows you to set them up using arbitrary Python versions and directives)
 
 # configure here (only) if at all
 VIRTUALENV_BASEDIR=$HOME/pyenv
