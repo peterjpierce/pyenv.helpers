@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PYTHONS_BASEDIR=/opt/python
+default_basedir=/opt/python
 
 me=$(basename $0)
 bindir=$(cd $(dirname $0); pwd)
@@ -8,9 +8,9 @@ url_pattern='https://www.python.org/ftp/python/x.y.z/Python-x.y.z.tgz'
 
 usage() {
   echo "usage: $me <version> [install_dir]"
-  echo "   ex: $me 3.7.2"
-  echo "       $me 3.6.2 /home/kelly/py/3.6.2"
-  echo "(default install_dir=$PYTHONS_BASEDIR/<version>)"
+  echo "   ex: $me 3.10.7"
+  echo "       $me 3.7.3 /home/kelly/py/3.7.3"
+  echo "(default install_dir=$default_basedir/<version>)"
   exit 0
 }
 
@@ -18,9 +18,9 @@ usage() {
 if [[ $# -lt 1 ]] || [[ $# -gt 2 ]]; then
   usage
 else
-  if [[ $1 =~ [23]\.[0-9]\.[0-9]+ ]]; then
+  if [[ $1 =~ [23]\.[0-9]+\.[0-9]+ ]]; then
     version=$1
-    [[ -n $2 ]] && prefix=$2 || prefix=$PYTHONS_BASEDIR/$version
+    [[ -n $2 ]] && prefix=$2 || prefix=$default_basedir/$version
     if [[ -e $prefix ]]; then
       echo "cannot proceed because \"$prefix\" already exists"
       exit 1
